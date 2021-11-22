@@ -1,5 +1,6 @@
 /*global module:false*/
-module.exports = function(grunt) {
+const sass = require("sass");
+module.exports = function (grunt) {
 
   var packageJSON = grunt.file.readJSON('package.json');
   var bumpFiles = ["package.json", "bower.json", "composer.json"];
@@ -225,7 +226,8 @@ module.exports = function(grunt) {
       production: {
         options: {
           sourceMap: true,
-          outputStyle: 'expanded'
+          outputStyle: 'expanded',
+          implementation: sass,
         },
         files: {
           '<%= pkg.gruntConfig.temp.css %>': '<%= pkg.gruntConfig.sass.slider %>'
@@ -234,7 +236,8 @@ module.exports = function(grunt) {
       "production-min": {
         options: {
           sourceMap: true,
-          outputStyle: 'compressed'
+          outputStyle: 'compressed',
+          implementation: sass,
         },
         files: {
           '<%= pkg.gruntConfig.temp.cssMin %>': '<%= pkg.gruntConfig.sass.slider %>'
